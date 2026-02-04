@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:islami/core/constants/app_colors.dart';
+import 'package:islami/core/constants/app_strings.dart';
+import 'package:islami/features/onboarding/widgets/onboarding_page.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -26,25 +29,25 @@ class OnboardingScreen extends StatelessWidget {
 
         back: Text(
           "Back",
-          style: TextStyle(color: AppColors.primary, fontSize: 18),
+          style: TextStyle(color: AppColors.primary, fontSize: 18.sp),
         ),
 
         next: Text(
           "Next",
-          style: TextStyle(color: AppColors.primary, fontSize: 18),
+          style: TextStyle(color: AppColors.primary, fontSize: 18.sp),
         ),
 
         done: Text(
-          "Start",
+          "Finish",
           style: TextStyle(
             color: AppColors.primary,
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: 18.sp,
           ),
         ),
 
-        onDone: () => Navigator.pushReplacementNamed(context, '/home'),
-        onSkip: () => Navigator.pushReplacementNamed(context, '/home'),
+        onDone: () => Navigator.pushReplacementNamed(context, homeRoute),
+        onSkip: () => Navigator.pushReplacementNamed(context, homeRoute),
       ),
     );
   }
@@ -77,49 +80,5 @@ class OnboardingScreen extends StatelessWidget {
             "You can listen to the Holy Quran Radio through the application for free and easily",
       ),
     ];
-  }
-
-  PageViewModel onboardingPage({
-    required String image,
-    required String title,
-    String? subtitle,
-  }) {
-    return PageViewModel(
-      useScrollView: false,
-
-      titleWidget: Image.asset(
-        "assets/images/onboarding_head.png",
-        height: 171,
-        width: 291,
-        fit: BoxFit.contain,
-      ),
-
-      bodyWidget: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(image, height: 350, fit: BoxFit.fill),
-
-          SizedBox(height: 50),
-
-          Text(
-            title,
-            style: TextStyle(
-              color: AppColors.primary,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          SizedBox(height: 30),
-
-          if (subtitle != null)
-            Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.primary, fontSize: 20),
-            ),
-        ],
-      ),
-    );
   }
 }

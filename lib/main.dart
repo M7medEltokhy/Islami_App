@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/features/home/screens/home_screen.dart';
+import 'package:islami/core/constants/app_strings.dart';
+import 'package:islami/features/tabs/main_screen.dart';
 import 'package:islami/features/onboarding/screen/onboarding_screen.dart';
 
 void main() {
@@ -12,15 +14,20 @@ class IslamiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: AppColors.background,
-      
+    return ScreenUtilInit(
+      designSize: const Size(430, 932),
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.background,
+          fontFamily: 'Janna LT Bold',
+        ),
+        debugShowCheckedModeBanner: false,
+        initialRoute: onboardingRoute,
+        routes: {
+          onboardingRoute: (context) => const OnboardingScreen(),
+          homeRoute: (context) => const MainScreen(),
+        },
       ),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => const OnboardingScreen(),
-        '/home': (context) => const HomeScreen(),
-      },
     );
   }
 }
