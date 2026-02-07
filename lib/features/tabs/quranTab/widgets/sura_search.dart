@@ -3,11 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/constants/app_colors.dart';
 
 class SuraSearch extends StatelessWidget {
-  const SuraSearch({super.key});
+  const SuraSearch({super.key, required this.onSearch});
+
+  final Function(String) onSearch;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: TextStyle(color: AppColors.white, fontSize: 18.sp),
+      onChanged: onSearch,
       cursorColor: AppColors.primary,
       decoration: InputDecoration(
         constraints: BoxConstraints(maxHeight: 55.h),
