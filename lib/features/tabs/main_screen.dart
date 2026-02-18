@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/features/tabs/bottom_nav_bar.dart';
 import 'package:islami/features/tabs/hadithTab/hadith_tab.dart';
 import 'package:islami/features/tabs/quranTab/quran_tab.dart';
+import 'package:islami/features/tabs/sebhaTab/sebha_tab.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -25,9 +26,19 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = [
     QuranTab(),
     HadithTab(),
-    QuranTab(),
-    QuranTab(),
-    QuranTab(),
+    SebhaView(),
+    Center(
+      child: Text(
+        'Radio Tab',
+        style: TextStyle(fontSize: 24.sp, color: Colors.white),
+      ),
+    ),
+    Center(
+      child: Text(
+        'Time Tab',
+        style: TextStyle(fontSize: 24.sp, color: Colors.white),
+      ),
+    ),
   ];
   @override
   Widget build(BuildContext context) {
