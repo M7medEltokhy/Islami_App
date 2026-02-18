@@ -33,7 +33,7 @@ class _SebhaViewState extends State<SebhaView> {
               style: TextStyle(fontSize: 30.sp, color: Colors.white),
             ),
 
-            SizedBox(height: 70.h),
+            SizedBox(height: 100.h),
 
             GestureDetector(
               onTap: () {
