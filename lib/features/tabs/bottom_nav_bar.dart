@@ -45,16 +45,16 @@ class BottomNavBar extends StatelessWidget {
             icon: Image.asset('assets/images/ic_sebha.png'),
             label: 'Sebha',
           ),
-          BottomNavigationBarItem(
-            activeIcon: activeNavItem(iconPath: 'assets/images/ic_radio.png'),
-            icon: Image.asset('assets/images/ic_radio.png'),
-            label: 'Radio',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: activeNavItem(iconPath: 'assets/images/ic_time.png'),
-            icon: Image.asset('assets/images/ic_time.png'),
-            label: 'Time',
-          ),
+          // BottomNavigationBarItem(
+          //   activeIcon: activeNavItem(iconPath: 'assets/images/ic_radio.png'),
+          //   icon: Image.asset('assets/images/ic_radio.png'),
+          //   label: 'Radio',
+          // ),
+          // BottomNavigationBarItem(
+          //   activeIcon: activeNavItem(iconPath: 'assets/images/ic_time.png'),
+          //   icon: Image.asset('assets/images/ic_time.png'),
+          //   label: 'Time',
+          // ),
         ],
       ),
     );
@@ -66,7 +66,7 @@ class BottomNavBar extends StatelessWidget {
       width: 59.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(66),
-        color: AppColors.background.withOpacity(0.6),
+        color: AppColors.background.withValues(alpha: 0.6),
       ),
       child: Center(child: Image.asset(iconPath, color: AppColors.white)),
     );

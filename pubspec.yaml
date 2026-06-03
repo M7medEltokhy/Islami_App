@@ -38,6 +38,11 @@ dependencies:
   introduction_screen: ^4.0.0
   flutter_screenutil: ^5.9.3
   carousel_slider: ^5.1.2
+  bloc: ^9.2.0
+  dio: ^5.9.1
+  audioplayers: ^6.5.1
+  qcf_quran_plus: ^0.0.8
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +70,6 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
-    - assets/files/Suras/
     - assets/files/Hadeeth/
   #   - images/a_dot_ham.jpeg
 

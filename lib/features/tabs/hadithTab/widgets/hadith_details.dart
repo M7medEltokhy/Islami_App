@@ -13,20 +13,16 @@ class HadithDetails extends StatefulWidget {
 }
 
 class _HadithDetailsState extends State<HadithDetails> {
-  late String hadithData;
+  late final Future<String> _hadithFuture;
 
   Future<String> hadithText() async {
-    hadithData = await rootBundle.loadString(
-      "assets/files/Hadeeth/h${widget.index - 1}.txt",
-    );
-    setState(() {});
-    return hadithData;
+    return rootBundle.loadString("assets/files/Hadeeth/h${widget.index}.txt");
   }
 
   @override
   void initState() {
-    hadithText();
     super.initState();
+    _hadithFuture = hadithText();
   }
 
   @override
@@ -34,7 +30,7 @@ class _HadithDetailsState extends State<HadithDetails> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text("Hadith ${widget.index - 1}"),
+        title: Text("Hadith ${widget.index}"),
         centerTitle: true,
       ),
       body: Stack(
@@ -45,17 +41,43 @@ class _HadithDetailsState extends State<HadithDetails> {
             child: Column(
               children: [
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      hadithData,
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 20.sp,
-                        wordSpacing: 2.w,
-                        height: 2.h,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+                  child: FutureBuilder<String>(
+                    future: _hadithFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
+                        );
+                      }
+
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(
+                            'Could not load hadith',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      }
+
+                      return SingleChildScrollView(
+                        child: Text(
+                          snapshot.data ?? '',
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: 20.sp,
+                            wordSpacing: 2.w,
+                            height: 2.h,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

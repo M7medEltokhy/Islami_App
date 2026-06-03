@@ -12,14 +12,16 @@ class HadithCard extends StatefulWidget {
 }
 
 class _HadithCardState extends State<HadithCard> {
-  late String hadithData;
+  late final Future<String> _hadithFuture;
 
   Future<String> hadithText() async {
-    hadithData = await rootBundle.loadString(
-      "assets/files/Hadeeth/h${widget.index}.txt",
-    );
-    setState(() {});
-    return hadithData;
+    return rootBundle.loadString("assets/files/Hadeeth/h${widget.index}.txt");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _hadithFuture = hadithText();
   }
 
   @override
@@ -29,7 +31,7 @@ class _HadithCardState extends State<HadithCard> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HadithDetails(index: widget.index + 1),
+            builder: (context) => HadithDetails(index: widget.index),
           ),
         );
       },
@@ -45,7 +47,7 @@ class _HadithCardState extends State<HadithCard> {
         ),
 
         child: FutureBuilder<String>(
-          future: hadithText(),
+          future: _hadithFuture,
           builder: (context, hadith) {
             return SingleChildScrollView(
               child: Text(

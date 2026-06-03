@@ -33,7 +33,7 @@ class SurasList extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return SuraDetails(index: index + 1);
+                        return SuraDetails(index: sura.index);
                       },
                     ),
                   );
@@ -48,7 +48,7 @@ class SurasList extends StatelessWidget {
                     children: [
                       Image.asset('assets/images/img_sur_number_frame.png'),
                       Text(
-                        '${index + 1}',
+                        '${sura.index}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.sp,
